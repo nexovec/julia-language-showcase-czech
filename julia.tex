@@ -5,6 +5,29 @@
 \usepackage{phaistos}
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
 
 \title{Programovací jazyk julia}
 \author{Marek Šajner}
@@ -14,16 +37,67 @@
 \begin{abstract}
     Programovací jazyk julia se prezentuje jako alternativa k jazykům používaných v akademické sféře a numerických výpočtech,
     jako je python, R a Matlab.
-    V této práci se budeme zabývat jeho výhodami a nevýhodami, jak sama o sobě, tak vzhledem k jiným programovacím jazykům.
+    V této práci ho budu posuzovat z hlediska výkonnosti, uživatelského prostředí a knihoven.
 \end{abstract}
 \newpage
 \section{Nastavení prostředí}
-\subsection{Instalace}
 \subsection{První program}
+Oficiální implementaci julie lze stáhnout z oficiálních stránek(https://julialang.org/downloads/).
+Po nainstalování je možné spustit julii z příkazové řádky pomocí příkazu julia.
+
+Tento mód chodu interpreteru julia se označuje jako REPL (Read-Eval-Print-Loop),
+a v tomto módu je možné zadávat příkazy a ihned vidět jejich výstup.
+Pro spuštění skriptu ze souboru je možné použít příkaz
+\begin{lstlisting}
+    include("<cesta k souboru>"),
+\end{lstlisting}
+nebo lze soubor spustit přímo z příkazové řádky pomocí příkazu julia <cesta k souboru>.
+
+Pro základní nápovědu k použití REPL je možné použít příkaz ? nebo help() uvnitř REPLu.
+Pro nápovědu k rozhraní souboru z příkazové řádky(CLI rozhraní) je možné použít příkaz julia --help.
+Dokumentace k julii je v době psaní tohoto dokumentu dostupná na oficiálních stránkách(https://docs.julialang.org/en/v1/),
+a tato dokumetace pokývá jak syntax jazyka, tak i jeho knihovny.
+
 \subsection{Instalace balíčků}
+Management balíčků v julii je realizován pomocí balíčku Pkg, který je součástí standardní instalace.
+Můj oblíbený způsob instalace balíčků je přes REPL, kde je možné napsat znak ], který přepne REPL do balíčkového módu.
+Zde lze nainstalovat balíček příkazem add. Balíčky typicky vyhledávám online na stránkách https://juliapackages.com/.
+
+Jeden z populárních balíčků je Plots, který slouží k vykreslování grafů, a ten teď nainstalujeme příkazem add Plots.
+Zpět do REPLu se dostaneme příkazem backspace.
+
+Instalovat balíčky lze pochopitelně i uvnitř skriptu, v našem případě příkazem
+import Pkg
+Pkg.add("Plots")
+
+Oba způsoby jsou plnohodnotné a volají stejný příkaz. Stejně to je i s ostatními příkazy uvnitř Pkg.
+
 \subsection{Izolované prostředí a editor}
+
+Julia poskytuje líbivý způsob pro vytvoření izolovaného prostředí pro jednotlivé projekty.
+\begin{lstlisting}
+    import Pkg
+\end{lstlisting}
+a alternativně
+
+% Pkg.activate("<libovolný název prostředí>")
+
+% Pkg.activate(<cesta k prostředí>)
+\begin{lstlisting}
+\end{lstlisting}
+
+Toto zabrání instalaci balíčků do globálního prostředí,
+čímž se eliminují konflikty mezi verzemi balíčků v různých projektech,
+a také to usnadňuje management ballíčků, jelikož prostředí lze lehce odstranit,
+a následně smazat nepoužívané balíčky.
+
+Zároveň je možné vyexportovat požadavky projektů, což je užitečné pro kolaborativní práci.
+Jedná se o formu aktivní dokumentace projektu, což je samo o sobě dobré.
+% tady se dá bavit o manifestech
+
 \section{Funkcionalita jazyka}
 \subsection{Syntax}
+Následující úryvek kódu ilustruje syntax julie.
 \subsection{Interoperabilita}
 \subsection{Nové paradigma - multiple-dispatch}
 \section{Knihovny jazyka}
